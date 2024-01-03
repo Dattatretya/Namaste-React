@@ -1,0 +1,21 @@
+{
+  "name": "first",
+  "version": "1.0.0",
+  "description": "\"learning namaste react\"",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\"https://github.com/Dattatretya/Namaste-React\""
+  },
+  "keywords": [
+    "namaste"
+  ],
+  "author": "Dattatreya Sengupta",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}
