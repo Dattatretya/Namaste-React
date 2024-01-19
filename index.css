@@ -1,3 +1,53 @@
 #heading{
     color: blue;
 }
+
+.res-card-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res-card{
+    min-width: 200px;
+    max-width: 200px;
+    border: 1px solid black;
+    margin: 10px;
+    text-align: center;
+}
+
+img{
+    margin: 10px;
+    width: 180px;
+    height: 190px;
+}
+
+.shimmer{
+    border: 1px solid rgb(166, 166, 166);
+    background-color: #f0f0f0;
+    width: 200px;
+    height: 400px;
+    margin: 10px;
+}
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.header-container > ul {
+    display: flex;
+}
+
+.header-container > ul > li {
+    margin: 12px;
+    padding: 5px;
+}
+
+.loginbtn{
+    height: 30px;
+    width: 90px;
+    margin: 25px 5px 0px 0px;
+
+}
