@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import useOnlineStatus from './Hooks/useOnlineStatus'
 
 const Header = () => {
 
+  const navigate = useNavigate()
   const [btnState, setBtnState] = useState ("Login")
+  const onlineStatus = useOnlineStatus()
 
   const handleState = () => {
+    navigate("/login")
     if (btnState==="Login"){
       setBtnState("Logout")
     }
@@ -15,17 +20,19 @@ const Header = () => {
 
 
   return (
-    <div className='header-container'>
-      <img style={{"width":"60px", "height":"60px"}} src='https://cdn.vectorstock.com/i/1000x1000/20/76/food-store-logo-template-vector-40192076.webp'/>
+    <div className="flex justify-between items-center shadow-lg border-2 border-black m-1 p-2 bg-orange-200 sm:bg-slate-300 rounded-xl">
+      <img className='w-16 h-16 rounded-sm' src='https://cdn.vectorstock.com/i/1000x1000/20/76/food-store-logo-template-vector-40192076.webp'/>
       
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-        <li>Cart</li>
+      <ul className='flex items-center'>
+      <li className='m-4 p-4'>Status: {onlineStatus ? "💚" : "❌"}</li>
+      <li className='m-2 hover:bg-slate-600 p-2 hover:rounded-sm'><Link to='/'>Home</Link></li>
+      <li className='m-2 hover:bg-slate-600 p-2 hover:rounded-sm'><Link to='/about'>About</Link></li>
+      <li className='m-2 hover:bg-slate-600 p-2 hover:rounded-sm'> <Link to='/contact'>Contact</Link></li>
+      <li className='m-2 hover:bg-slate-600 p-2 hover:rounded-sm'> <Link to='/grocery'>Grocery</Link></li>
+        <li className='m-2 p-2'>Cart</li>
       </ul>
 
-      <button className='loginbtn' onClick={handleState}>{btnState}</button>
+      <button className='border-1 bg-slate-300 m-0.5 hover:bg-slate-600 p-2 hover:rounded-sm ' onClick={handleState}>{btnState}</button>
     </div>
   )
 }
