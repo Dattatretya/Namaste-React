@@ -8,18 +8,39 @@ import Error from "./Error"
 import Contact from "./Contact"
 import RestaurantMenu from "./RestaurantMenu"
 import Login from "./Login"
+import UserContext from "./UserContext"
+import { Provider } from "react-redux"
+import appStore from "./redux/appCart"
+import Cart from "./Cart"
 // import Grocery from "./Hooks/Grocery"
 
 const Grocery = lazy(()=>import("./Hooks/Grocery"))
 
 
+
 const App = () => {
+
+    const [userName, setUserName] = useState ()
+
+    useEffect(()=>{
+        const data = {
+            name:"Dattatreya"
+        }
+        setUserName(data.name)
+    
+    },[])
+    
     
     return (
+        <Provider store={appStore}>
+        <UserContext.Provider value={{dummy:userName, setUserName}}>
         <>
         <Header/>
         <Outlet/>
         </>
+        </UserContext.Provider>
+        </Provider>
+        
     
     )
         }
@@ -50,6 +71,10 @@ const App = () => {
                     {
                         path:"/login",
                         element:<Login/>
+                    },
+                    {
+                        path:"/cart",
+                        element:<Cart/>
                     },
                     {
                         path:"/grocery",

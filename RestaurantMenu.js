@@ -1,39 +1,54 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import useRestaurantmenu from './Hooks/useRestaurantMenu'
+import ResCategory from './RestaurantMenuCompo/ResCategory'
+
 
 const RestaurantMenu = () => {
 
-  // const [menu, setMenu] = useState ([])
+  const [showIndex, setShowIndex] = useState (null)
 
   const menu = useRestaurantmenu()
 
-  // const param = useParams()
-  // console.log(param)
+  const filtered = menu.filter((c)=>
+    c.card?.card?.["@type"]=== "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  )
 
-  // useEffect(()=>{
 
-  //   fetchMenu()
 
-  // },[])
 
-  // const fetchMenu = async () =>{
-  //   const data = await fetch ("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4187551&lng=77.0493876&restaurantId="+ param.resID)
-  //   const json = await data.json()
-  //   console.log(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[4].card.card.itemCards)
-  // //   setMenu(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[4].card.card.itemCards)
-  // }
+  // Test
+  useEffect(()=>{
+
+    fetchMenu()
+
+  },[])
+
+
+  const fetchMenu = async () =>{
+    const data = await fetch ("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4187551&lng=77.0493876&restaurantId=289291")
+    const json = await data.json()
+    // console.log(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.CARDS)
+  }
+ //
+
+  
 
   return (
     <div className='item-container'>
-      {menu.map((item)=>(
-        <div key={item.card.info.id} className='item-card'>
-          <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/"+item.card.info.imageId}/>
-        <h2>{item.card.info.name}</h2>
-        <h4>Price: {item.card.info.price/100} </h4>
-        </div>
+      <div className="font-bold text-lg m-6 p-2 uppercase shadow-lg ">{menu[(menu.length)-1]?.card?.card?.name}</div>
+      {filtered.map((item, index)=>(
+        <div key={item.card.card.title} className='item-card'>
+          <ResCategory 
+          data={item.card.card}
+          showItems={index===showIndex && true}
+          setShowIndex={()=>setShowIndex(index)}
+          />
+          
+          </div>
+      
       ))}
     </div>
+    
   )
       }
 
