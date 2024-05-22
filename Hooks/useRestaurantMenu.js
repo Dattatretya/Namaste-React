@@ -16,8 +16,8 @@ function useRestaurantmenu(){
       const fetchMenu = async () =>{
         const data = await fetch ("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4187551&lng=77.0493876&restaurantId="+ param.resID)
         const json = await data.json()
-        console.log(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[4])
-        setMenu(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
+        console.log(json.data)
+        setMenu(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards)
 
 }
     return menu;
